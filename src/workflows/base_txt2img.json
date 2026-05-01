@@ -1,0 +1,79 @@
+{
+  "17": {
+    "inputs": {
+      "ckpt_name": "analogMadness_v70.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "18": {
+    "inputs": {
+      "text": "closeup photo of a woman wearing a white spring dress in garden \n\nhigh quality, diffuse light, highly detailed, 4k",
+      "clip": ["17", 1]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "27": {
+    "inputs": {
+      "text": "blurry. malformed, distorted, naked",
+      "clip": ["17", 1]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "28": {
+    "inputs": {
+      "seed": 1,
+      "steps": 25,
+      "cfg": 6,
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "denoise": 1,
+      "model": ["17", 0],
+      "positive": ["18", 0],
+      "negative": ["27", 0],
+      "latent_image": ["29", 0]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "29": {
+    "inputs": {
+      "width": 512,
+      "height": 768,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "Empty Latent Image"
+    }
+  },
+  "30": {
+    "inputs": {
+      "samples": ["28", 0],
+      "vae": ["17", 2]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "32": {
+    "inputs": {
+      "images": ["30", 0]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "skipLibCheck": true,
+
+    "moduleResolution": "NodeNext",
+    "resolveJsonModule": true
+  },
+
+  "include": [
+    "src/**/*.ts",
+    "src/services/inference/ComfyUI/lib/workflowLoader.ts",
+    "src/services/inference/ComfyUI/lib/workflowInjector.ts",
+    "src/services/inference/ComfyUI/lib/resolveWorkflowFile.ts",
+    "src/services/inference/ComfyUI/lib/getWorkflowType.ts"
+  ],
+  "exclude": ["node_modules"]
+}
