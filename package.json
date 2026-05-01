@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon",
-    "build": "node ./node_modules/typescript/bin/tsc && cp -r src/workflows dist/workflows",
+    "dev": "nodemon src/index.ts",
+    "build": "tsc && cp -r src/workflows dist/workflows",
+    "start": "node dist/index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
